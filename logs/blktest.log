@@ -4,3 +4,22 @@
 2025-01-18 16:24:28,225 - blktest_logger - INFO - start parsing fio output
 2025-01-18 16:24:28,225 - blktest_logger - INFO - read latency: 406.65
 2025-01-18 16:24:28,225 - blktest_logger - INFO - write latency: 415.51
+2025-01-18 22:53:45,747 - blktest_logger - INFO - Starting fio test
+2025-01-18 22:53:45,747 - blktest_logger - INFO - Created fio config file
+2025-01-18 22:53:45,747 - blktest_logger - INFO - start fio with iodepth=1
+2025-01-18 22:54:25,489 - blktest_logger - INFO - fio execution time: 39.740527868270874 seconds
+2025-01-18 22:54:25,490 - blktest_logger - INFO - start parsing fio output
+2025-01-18 22:54:25,490 - blktest_logger - INFO - read latency: 138.38
+2025-01-18 22:54:25,490 - blktest_logger - INFO - write latency: 147.25
+2025-01-18 22:54:25,490 - blktest_logger - INFO - Created fio config file
+2025-01-18 22:54:25,490 - blktest_logger - INFO - start fio with iodepth=101
+2025-01-18 22:54:50,575 - blktest_logger - INFO - fio execution time: 25.08471703529358 seconds
+2025-01-18 22:54:50,576 - blktest_logger - INFO - start parsing fio output
+2025-01-18 22:54:50,576 - blktest_logger - INFO - read latency: 1510.21
+2025-01-18 22:54:50,576 - blktest_logger - INFO - write latency: 1514.7
+2025-01-18 22:54:50,576 - blktest_logger - INFO - Created fio config file
+2025-01-18 22:54:50,576 - blktest_logger - INFO - start fio with iodepth=201
+2025-01-18 22:55:12,407 - blktest_logger - INFO - fio execution time: 21.830677032470703 seconds
+2025-01-18 22:55:12,408 - blktest_logger - INFO - start parsing fio output
+2025-01-18 22:55:12,408 - blktest_logger - INFO - read latency: 1303.32
+2025-01-18 22:55:12,408 - blktest_logger - INFO - write latency: 1308.89
