@@ -1,0 +1,6 @@
+2025-01-18 16:23:04,023 - blktest_logger - INFO - start parsing fio output
+2025-01-18 16:23:04,023 - blktest_logger - INFO - read latency: 406.65
+2025-01-18 16:23:04,023 - blktest_logger - INFO - write latency: 415.51
+2025-01-18 16:24:28,225 - blktest_logger - INFO - start parsing fio output
+2025-01-18 16:24:28,225 - blktest_logger - INFO - read latency: 406.65
+2025-01-18 16:24:28,225 - blktest_logger - INFO - write latency: 415.51
