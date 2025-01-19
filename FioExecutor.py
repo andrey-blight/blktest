@@ -2,6 +2,7 @@ import time
 import subprocess
 import pathlib
 
+from FioParser import FioParser
 from logger import logger
 
 
@@ -84,55 +85,6 @@ rw=randwrite"""
 
             raise RuntimeError("fio execution failed")
 
-    @staticmethod
-    def _parse_output(fio_output: str) -> tuple[float, float]:
-        """
-        Get average latency from fio output for write and read commands
-
-        :param fio_output: stdout from fio
-        :return: read latency, write latency
-        """
-        logger.debug(f"fio output: {fio_output}")
-        logger.info("start parsing fio output")
-
-        # split by lines and remove left and right spaces
-        result_text = [el.strip() for el in fio_output.split("\n")]
-
-        read_latency = None
-        write_latency = None
-        operation_type = None  # determine what command is now
-        for line in result_text[2:]:
-
-            if line.startswith("read_test"):  # if now read_test logs
-                operation_type = "read"
-            elif line.startswith("write_test"):  # if now write test logs
-                operation_type = "write"
-            elif line.startswith("lat (usec):"):  # if this line contains average latency
-                lat_avg = ""  # save here latency
-
-                i = line.find("avg=") + len("avg=")  # find str index, where average value
-
-                # check if "avg=" was found
-                if i == -1:
-                    logger.error(f"Cannot find avg= in line: {line}")
-                    raise ValueError(f"Cannot find avg= in line: {line}")
-
-                while line[i] != ',':
-                    lat_avg += line[i]
-                    i += 1
-
-                lat_avg = float(lat_avg)
-
-                match operation_type:
-                    case "read":
-                        read_latency = lat_avg
-                        logger.info(f"read latency: {read_latency}")
-                    case "write":
-                        write_latency = lat_avg
-                        logger.info(f"write latency: {write_latency}")
-
-        return read_latency, write_latency
-
     def get_latencies(self) -> list[tuple[int, float, float]]:
         """
         Execute fio with different iodepth and return latencies
@@ -145,7 +97,9 @@ rw=randwrite"""
         for iodepth in self.iodepth_array:
             fio_text = self._execute_fio(iodepth)  # run fio with current iodepth
 
-            read_latency, write_latency = self._parse_output(fio_text)  # parse latency from stdout
+            # parse latency from stdout
+            fio_parser = FioParser(fio_text)
+            read_latency, write_latency = fio_parser.parse()
 
             latencies.append((iodepth, read_latency, write_latency))  # save iodepth and latency
 

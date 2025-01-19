@@ -10,3 +10,4 @@ if __name__ == '__main__':
 
     latencies = fio_executor.get_latencies()
     print(latencies)
+    logger.info("Finished fio test")
