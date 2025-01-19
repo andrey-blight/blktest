@@ -4,6 +4,7 @@ import pathlib
 
 from FioParser import FioParser
 from logger import logger
+from functions import print_progress
 
 
 class FioExecutor:
@@ -94,7 +95,9 @@ rw=randwrite"""
 
         latencies = []
 
-        for iodepth in self.iodepth_array:
+        for i, iodepth in enumerate(self.iodepth_array):
+            print_progress(i + 1, len(self.iodepth_array))
+
             fio_text = self._execute_fio(iodepth)  # run fio with current iodepth
 
             # parse latency from stdout
