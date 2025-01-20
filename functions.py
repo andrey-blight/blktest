@@ -17,8 +17,11 @@ def print_progress(current: int, total: int, bar_length: int = 40) -> None:
     percent = progress_percent * 100
 
     # print in one line
-    sys.stdout.write(f"\r[{bar}] {percent:.2f}%\n")
+    sys.stdout.write(f"\r[{bar}] {percent:.2f}%")
     sys.stdout.flush()
+
+    if current == total: # if this is last line of progress line add \n to stdout
+        print()
 
 
 def generate_parameters(num_tests: int, start: int = 1, stop: int = 256) -> list[int]:
