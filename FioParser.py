@@ -5,7 +5,7 @@ from logger import logger
 
 class FioParser:
     # regex pattern to parse latency line
-    LATENCY_PATTERN = r"^\s*lat\s+\((\w+)\).*?avg=([\d.]+)"
+    LATENCY_PATTERN = r"^\s*lat\s+\((\w+)\).*?avg=\s*([\d.]+)"
 
     # lambdas to convert time to usec
     TIME_CONVERSION = {
