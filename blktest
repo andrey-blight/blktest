@@ -1,0 +1,18 @@
+#!/bin/bash
+
+name=""
+filename=""
+output=""
+
+while [ "$1" != "" ]; do
+    case $1 in
+        -name=*) name="${1#*=}";;
+        -filename=*) filename="${1#*=}";;
+        -output=*) output="${1#*=}";;
+        *) echo "Неправильный аргумент: $1"; exit 1;;
+    esac
+    shift
+done
+
+# Запуск Python скрипта
+python main.py "$name" "$filename" "$output"

@@ -13,4 +13,7 @@ WORKDIR /workspace
 # clone blktest
 RUN git clone https://github.com/andrey-blight/blktest
 
+# add executable to bash
+RUN chmode +x blktest
+
 WORKDIR /workspace/blktest

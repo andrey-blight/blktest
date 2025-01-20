@@ -9,7 +9,7 @@ from functions import print_progress
 
 class FioExecutor:
     CONFIG_TEXT = """[global]
-name=mytest
+name={test_name:s}
 ioengine=posixaio
 direct=1
 bs=4k
@@ -18,19 +18,21 @@ numjobs=1
 iodepth={iodepth:d}
 
 [read_test]
-filename=test_file
+filename={filename:s}
 rw=randread
 
 [write_test]
-filename=test_file
+filename={filename:s}
 rw=randwrite"""
 
-    def __init__(self, iodepth_array: list[int]):
+    def __init__(self, iodepth_array: list[int], test_name: str, filename: str):
         for iodepth in iodepth_array:
             if iodepth > 256 or iodepth < 1:
                 raise ValueError("iodepth must be between 1 and 256")
 
         self.iodepth_array = iodepth_array
+        self.test_name = test_name
+        self.filename = filename
 
     def _create_config_file(self, iodepth: int) -> pathlib.Path:
         """
@@ -39,7 +41,9 @@ rw=randwrite"""
         :param iodepth: iodepth param for fio config file
         :return: Path to fio config file
         """
-        config_text = self.CONFIG_TEXT.format(iodepth=iodepth)
+        config_text = self.CONFIG_TEXT.format(iodepth=iodepth,
+                                              test_name=self.test_name,
+                                              filename=self.filename)
 
         with open("config.fio", "w") as config_file:
             config_file.write(config_text)

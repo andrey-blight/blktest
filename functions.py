@@ -20,7 +20,7 @@ def print_progress(current: int, total: int, bar_length: int = 40) -> None:
     sys.stdout.write(f"\r[{bar}] {percent:.2f}%")
     sys.stdout.flush()
 
-    if current == total: # if this is last line of progress line add \n to stdout
+    if current == total:  # if this is last line of progress line add \n to stdout
         print()
 
 
@@ -41,3 +41,12 @@ def generate_parameters(num_tests: int, start: int = 1, stop: int = 256) -> list
 
     # Delete equal and sort
     return sorted(set(params))
+
+
+def parse_args():
+    """
+    Get arguments from command line.
+
+    :return: test name, file name, plot file name
+    """
+    return sys.argv[1:]
