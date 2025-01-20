@@ -10,7 +10,7 @@ from functions import print_progress
 class FioExecutor:
     CONFIG_TEXT = """[global]
 name={test_name:s}
-ioengine=posixaio
+ioengine=libaio
 direct=1
 bs=4k
 size=1G
